@@ -1,0 +1,168 @@
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      html {
+        height: 100%;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+        color: #fff;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+        background-color: #000;
+      }
+
+      .rad {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+
+      }
+
+      button {
+        margin-top: 10px;
+        margin-left: 10px;
+        z-index: 999;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+        border: solid 1px rgba(255, 255, 255, 0.5);
+        padding: 10px 20px;
+        border-radius: 5px;
+        background: none;
+        transition: 0.3s all;
+        cursor: pointer;
+        outline:none;
+      }
+
+      button:hover {
+        z-index: 999;
+        -webkit-appearance: none;
+        font-size: 12px;
+        color: #fff;
+        border: solid 1px rgba(255, 255, 255, 0.5);
+        padding: 10px 20px;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.3);
+        transition: 0.3s all;
+        cursor: pointer;
+        outline:none;
+      }
+
+      #msg {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        font-size: 12px;
+        color: #fff;
+      }
+
+      .clipboard {
+        height: 0px;
+        position: absolute;
+        top: -100px;
+        z-index: -999;
+      }
+    </style>
+  </head>
+  <body>
+
+
+    <div id="gradient_container" class="">
+        <button id="clip" onclick="CopyToClipboard('gradient_container')"> copy to clipboard </button>
+        <button onclick="location.reload();"> create another gradient </button>
+    </div>
+
+    <div id="msg"></div>
+    <textarea id="clipboard" class="clipboard"></textarea>
+
+    <script>
+      var str;
+
+      function CopyToClipboard(containerid) {
+        var clipboard = document.getElementById("clipboard");
+        clipboard.value = str;
+        clipboard.select();
+        document.execCommand("copy");
+        console.log("copied to clipboard");
+        document.getElementById('clip').innerHTML = 'copied &#x2714;';
+      }
+
+      (function() {
+        var r1 = Math.floor(Math.random() * 255);
+        var g1 = Math.floor(Math.random() * 255);
+        var b1 = Math.floor(Math.random() * 255);
+        var a1 = Math.random().toFixed(1);
+        var p1 = Math.floor(Math.random() * 100);
+        var q1 = Math.floor(Math.random() * 100);
+        // if (p1 > q1) { p1z = p1; p1 = q1; q1 = p1z; }
+
+        var r2 = Math.floor(Math.random() * 255);
+        var g2 = Math.floor(Math.random() * 255);
+        var b2 = Math.floor(Math.random() * 255);
+        var a2 = Math.random().toFixed(1);
+        var p2 = Math.floor(Math.random() * 100);
+        var q2 = Math.floor(Math.random() * 100);
+        // if (p2 > q2) { p2z = p2; p2 = q2; q2 = p2z; }
+
+        var r3 = Math.floor(Math.random() * 255);
+        var g3 = Math.floor(Math.random() * 255);
+        var b3 = Math.floor(Math.random() * 255);
+        var a3 = Math.random().toFixed(1);
+        var p3 = Math.floor(Math.random() * 100);
+        var q3 = Math.floor(Math.random() * 100);
+        // if (p3 > q3) { p3z = p3; p3 = q3; q3 = p3z; }
+
+        var r4 = Math.floor(Math.random() * 255);
+        var g4 = Math.floor(Math.random() * 255);
+        var b4 = Math.floor(Math.random() * 255);
+        var a4 = Math.random().toFixed(1);
+        var p4 = Math.floor(Math.random() * 100);
+        var q4 = Math.floor(Math.random() * 100);
+        // if (p4 < q4) { p4z = p4; p4 = q4; q4 = p4z; }
+
+        str = "";
+        str += " .gradient1 { ";
+        str += " width: 100%; ";
+        str += " height: 100%; ";
+        str += " position: absolute; ";
+        str += " background-blend-mode: screen; ";
+        str += " background-image: radial-gradient( ";
+        str += "     circle at " + p1 + "% " + q1 + "%, ";
+        str += "     rgba(" + r1 + ", " + g1 + ", " + b1 + ", " + a1 + ") 0%, ";
+        str += "     rgba(" + r1 + ", " + g1 + ", " + b1 + ", 0) 90% ";
+        str += "   ), ";
+        str += "   radial-gradient( ";
+        str += "     ellipse at " + p2 + "% " + q2 + "%, ";
+        str += "     rgba(" + r2 + ", " + g2 + ", " + b2 + ", " + a2 + ") 0%, ";
+        str += "     rgba(" + r2 + ", " + g2 + ", " + b2 + ", 0) 20% ";
+        str += "   ), ";
+        str += "   radial-gradient( ";
+        str += "     circle at " + p3 + "% " + q3 + "%, ";
+        str += "     rgba(" + r3 + ", " + g3 + ", " + b3 + ", " + a3 + ") 0%, ";
+        str += "     rgba(" + r3 + ", " + g3 + ", " + b3 + ", 0) 40% ";
+        str += "   ), ";
+        str += "   radial-gradient( ";
+        str += "     farthest-side at " + p4 + "% " + q4 + "%, ";
+        str += "     rgba(" + r4 + ", " + g4 + ", " + b4 + ", " + a4 + ") 0%, ";
+        str += "     rgba(" + r4 + ", " + g4 + ", " + b4 + ", 0) 100% ";
+        str += "   ); ";
+        str += " } ";
+
+        var style = document.createElement("style");
+        style.type = "text/css";
+        style.innerHTML = str;
+        document.getElementsByTagName("head")[0].appendChild(style);
+        document.getElementById("gradient_container").className = "gradient1";
+        document.getElementById("msg").innerHTML = str;
+      })();
+    </script>
+  </body>
+</html>
